@@ -3,7 +3,7 @@ package use_case.login;
 import entity.User;
 
 /**
- * The Login Interactor.
+ * The Login Interactor, which implements the LoginInputBoundary.
  */
 public class LoginInteractor implements LoginInputBoundary {
     private final LoginUserDataAccessInterface userDataAccessObject;
@@ -15,6 +15,10 @@ public class LoginInteractor implements LoginInputBoundary {
         this.loginPresenter = loginOutputBoundary;
     }
 
+    // This method takes the login input data username and password, and lets the presenter to 
+    // prepare success and fail views depending on whether the username exists, and whether the 
+    // username and password matches as stored in the DAO. Only presents the success view when 
+    username exists and matches with the password.
     @Override
     public void execute(LoginInputData loginInputData) {
         final String username = loginInputData.getUsername();
